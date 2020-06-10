@@ -6,14 +6,15 @@ namespace JAG.Dreambroker.Tests
 {
     public class UnitTest1
     {
+        Uri jsonUrlForInstructionVideosOnDreambrokerPublicWebsite = new Uri("https://dreambroker.com/channel/ij7bmvur.json");
         [Fact]
         public async void Test1()
         {
-
-            var response = await DreambrokerClient.GetFeedDataAsync("https://dreambroker.com/channel/j14ya0zu.json")
+            int numberOfVideosInFeedOn_10th_June_2020 = 120;
+            var response = await DreambrokerClient.GetFeedDataAsync(jsonUrlForInstructionVideosOnDreambrokerPublicWebsite)
                 .ConfigureAwait(false);
 
-            Assert.Equal(8, response.Items.Count());
+            Assert.Equal(numberOfVideosInFeedOn_10th_June_2020, response.Items.Count());
         }
     }
 }
