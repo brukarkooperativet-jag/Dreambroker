@@ -6,7 +6,7 @@ namespace JAG.Dreambroker.Tests
 {
     public class UnitTest1
     {
-        Uri jsonUrlForInstructionVideosOnDreambrokerPublicWebsite = new Uri("https://dreambroker.com/channel/ij7bmvur.json");
+        readonly Uri jsonUrlForInstructionVideosOnDreambrokerPublicWebsite = new Uri("https://dreambroker.com/channel/ij7bmvur.json");
         [Fact]
         public async void Test1()
         {
