@@ -21,6 +21,10 @@ steps:
     projects: '**/*.csproj'
 - task: DotNetCoreCLI@2
   inputs:
+    command: 'test'
+    projects: '**/*ests.csproj'
+- task: DotNetCoreCLI@2
+  inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     nobuild: true
@@ -28,3 +32,10 @@ steps:
     majorVersion: '0'
     minorVersion: '1'
     patchVersion: '0'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
