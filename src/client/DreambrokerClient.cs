@@ -13,12 +13,14 @@ namespace JAG.Dreambroker
         {
             var httpClient = new HttpClient();
             var responseMessage = await httpClient.GetAsync(url);
+
             if (!responseMessage.IsSuccessStatusCode)
                 throw new Exception();
 
-            var result = await responseMessage.Content.ReadAsStringAsync();
+            var result = await responseMessage.Content.ReadAsStringAsync()
+                .ConfigureAwait(false);
 
-            var data = JsonConvert.DeserializeObject<JsonResponse>(result);
+            var data = JsonConvert.DeserializeObject<DreamBrokerResponse>(result);
 
             var x = data.Items.First();
         }
