@@ -16,5 +16,14 @@ namespace JAG.Dreambroker.Tests
 
             Assert.Equal(numberOfVideosInFeedOn_10th_June_2020, response.Items.Count());
         }
+
+        [Fact]
+        public async void EmptyUriThrowsArgumentNullException()
+        {
+            Uri emptyUri = null;
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() =>
+                DreambrokerClient.GetFeedDataAsync(emptyUri)).ConfigureAwait(false);
+        }
     }
 }
