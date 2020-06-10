@@ -9,7 +9,7 @@ namespace JAG.Dreambroker
 {
     public class DreambrokerClient
     {
-        public async Task GetFeedDataAsync(string url)
+        public async Task<DreamBrokerResponse> GetFeedDataAsync(string url)
         {
             var httpClient = new HttpClient();
             var responseMessage = await httpClient.GetAsync(url);
@@ -22,7 +22,7 @@ namespace JAG.Dreambroker
 
             var data = JsonConvert.DeserializeObject<DreamBrokerResponse>(result);
 
-            var x = data.Items.First();
+            return data;
         }
     }
 }
