@@ -5,7 +5,7 @@ namespace JAG.Dreambroker.Models
     public class ContentItem
     {
         [JsonPropertyName("guid")]
-        public string Guid { get; set; }
+        public string Id { get; set; }
         [JsonPropertyName("title")]
         public string Title { get; set; }
         [JsonPropertyName("description")]
