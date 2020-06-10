@@ -6,12 +6,13 @@ namespace JAG.Dreambroker.Tests
 {
     public class DreambrokerClientTests
     {
-        readonly Uri jsonUrlForInstructionVideosOnDreambrokerPublicWebsite = new Uri("https://dreambroker.com/channel/ij7bmvur.json");
+        private readonly Uri _jsonUrlForInstructionVideosOnDreambrokerPublicWebsite = new Uri("https://dreambroker.com/channel/ij7bmvur.json");
+
         [Fact]
-        public async void Get_feed_data_with_client()
+        public async void NumberOfVideosInFeedMatchNumberOfVideosAsOf10thJune2020()
         {
             int numberOfVideosInFeedOn_10th_June_2020 = 120;
-            var response = await DreambrokerClient.GetFeedDataAsync(jsonUrlForInstructionVideosOnDreambrokerPublicWebsite)
+            var response = await DreambrokerClient.GetFeedDataAsync(_jsonUrlForInstructionVideosOnDreambrokerPublicWebsite)
                 .ConfigureAwait(false);
 
             Assert.Equal(numberOfVideosInFeedOn_10th_June_2020, response.Items.Count());

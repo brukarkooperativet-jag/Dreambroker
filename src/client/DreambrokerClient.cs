@@ -1,6 +1,5 @@
 ﻿using JAG.Dreambroker.Models;
 using System;
-using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -9,7 +8,7 @@ namespace JAG.Dreambroker
 {
     public static class DreambrokerClient
     {
-        public static async Task<JsonResponse> GetFeedDataAsync(Uri url)
+        public static async Task<DreamBrokerResponse> GetFeedDataAsync(Uri url)
         {
             if (url == null) throw new ArgumentNullException($"{nameof(url)} must not be null.");
             using (var httpClient = new HttpClient())
@@ -22,7 +21,7 @@ namespace JAG.Dreambroker
                 var result = await responseMessage.Content.ReadAsStringAsync()
                     .ConfigureAwait(false);
 
-                return JsonSerializer.Deserialize<JsonResponse>(result);
+                return JsonSerializer.Deserialize<DreamBrokerResponse>(result);
             }
         }
     }
