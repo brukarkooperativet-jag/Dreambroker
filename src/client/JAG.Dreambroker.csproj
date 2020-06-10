@@ -7,7 +7,11 @@
     <Company>Brukarkooperativet JAG</Company>
     <Product>Dreambroker Client</Product>
     <Authors>Tim Nilimaa-Svärd, Gonzalo Maldonado</Authors>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/brukarkooperativet-jag/Dreambroker</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/brukarkooperativet-jag/Dreambroker</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +25,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\models\JAG.Dreambroker.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
