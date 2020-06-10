@@ -1,65 +1,46 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace JAG.Dreambroker.Models
 {
     public class ContentItem
     {
-        [JsonProperty("guid")]
-        public string Guid { get; set; }
-
-        [JsonProperty("title")]
+        [JsonPropertyName("guid")]
+        public string Id { get; set; }
+        [JsonPropertyName("title")]
         public string Title { get; set; }
-
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
-
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
-
-        [JsonProperty("pubDate")]
+        [JsonPropertyName("pubDate")]
         public string PubDate { get; set; }
-
-        [JsonProperty("pubDateUTC")]
+        [JsonPropertyName("pubDateUTC")]
         public string PubDateUTC { get; set; }
-
-        [JsonProperty("pubDateTimestamp")]
+        [JsonPropertyName("pubDateTimestamp")]
         public long PubDateTimestamp { get; set; }
-
-        [JsonProperty("modifiedDate")]
+        [JsonPropertyName("modifiedDate")]
         public string ModifiedDate { get; set; }
-
-        [JsonProperty("modifiedDateUTC")]
+        [JsonPropertyName("modifiedDateUTC")]
         public string ModifiedDateUTC { get; set; }
-
-        [JsonProperty("link")]
+        [JsonPropertyName("link")]
         public string Link { get; set; }
-
-        [JsonProperty("metadata")]
+        [JsonPropertyName("metadata")]
         public string Metadata { get; set; }
-
-        [JsonProperty("order")]
+        [JsonPropertyName("order")]
         public string Order { get; set; }
-
-        [JsonProperty("duration")]
+        [JsonPropertyName("duration")]
         public string Duration { get; set; }
-
-        [JsonProperty("player")]
+        [JsonPropertyName("player")]
         public string Player { get; set; }
-
-        [JsonProperty("category")]
+        [JsonPropertyName("category")]
         public string Category { get; set; }
-
-        [JsonProperty("categoryId")]
+        [JsonPropertyName("categoryId")]
         public string CategoryId { get; set; }
-
-        [JsonProperty("thumbnail")]
+        [JsonPropertyName("thumbnail")]
         public string Thumbnail { get; set; }
-
-        [JsonProperty("poster")]
+        [JsonPropertyName("poster")]
         public string Poster { get; set; }
-
-        [JsonProperty("views")]
+        [JsonPropertyName("views")]
         public string Views { get; set; }
     }
 }

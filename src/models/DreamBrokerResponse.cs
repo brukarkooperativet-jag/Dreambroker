@@ -1,35 +1,27 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace JAG.Dreambroker.Models
 {
     public class DreamBrokerResponse
     {
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
-
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
-
-        [JsonProperty("link")]
+        [JsonPropertyName("link")]
         public string Link { get; set; }
-
-        [JsonProperty("videoWidth")]
+        [JsonPropertyName("videoWidth")]
         public int VideoWidth { get; set; }
-
-        [JsonProperty("videoHeight")]
+        [JsonPropertyName("videoHeight")]
         public int VideoHeight { get; set; }
-
-        [JsonProperty("thumbnailWidth")]
+        [JsonPropertyName("thumbnailWidth")]
         public int ThumbnailWidth { get; set; }
-
-        [JsonProperty("thumbnailHeight")]
+        [JsonPropertyName("thumbnailHeight")]
         public int ThumbnailHeight { get; set; }
-
-        [JsonProperty("categories")]
+        [JsonPropertyName("categories")]
         public IEnumerable<CategoryItem> Categories { get; set; }
-
-        [JsonProperty("items")]
+        [JsonPropertyName("items")]
         public IEnumerable<ContentItem> Items { get; set; }
     }
 }

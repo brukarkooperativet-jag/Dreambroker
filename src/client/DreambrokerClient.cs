@@ -1,28 +1,29 @@
 ﻿using JAG.Dreambroker.Models;
-using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace JAG.Dreambroker
 {
-    public class DreambrokerClient
+    public static class DreambrokerClient
     {
-        public async Task<DreamBrokerResponse> GetFeedDataAsync(string url)
+        public static async Task<JsonResponse> GetFeedDataAsync(Uri url)
         {
-            var httpClient = new HttpClient();
-            var responseMessage = await httpClient.GetAsync(url);
+            if (url == null) throw new ArgumentNullException($"{nameof(url)} must not be null.");
+            using (var httpClient = new HttpClient())
+            {
+                var responseMessage = await httpClient.GetAsync(url)
+                    .ConfigureAwait(false);
+                if (!responseMessage.IsSuccessStatusCode)
+                    throw new Exception();
 
-            if (!responseMessage.IsSuccessStatusCode)
-                throw new Exception();
+                var result = await responseMessage.Content.ReadAsStringAsync()
+                    .ConfigureAwait(false);
 
-            var result = await responseMessage.Content.ReadAsStringAsync()
-                .ConfigureAwait(false);
-
-            var data = JsonConvert.DeserializeObject<DreamBrokerResponse>(result);
-
-            return data;
+                return JsonSerializer.Deserialize<JsonResponse>(result);
+            }
         }
     }
 }
