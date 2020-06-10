@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Xunit;
 
 namespace JAG.Dreambroker.Tests
@@ -8,9 +9,11 @@ namespace JAG.Dreambroker.Tests
         [Fact]
         public async void Test1()
         {
-            var client = new DreambrokerClient();
 
-            await client.GetFeedDataAsync("https://dreambroker.com/channel/j14ya0zu.json");
+            var response = await DreambrokerClient.GetFeedDataAsync("https://dreambroker.com/channel/j14ya0zu.json")
+                .ConfigureAwait(false);
+
+            Assert.Equal(8, response.Items.Count());
         }
     }
 }
