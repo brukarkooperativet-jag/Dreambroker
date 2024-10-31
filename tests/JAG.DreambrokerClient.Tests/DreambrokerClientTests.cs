@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Linq;
 using Xunit;
 
@@ -9,22 +10,22 @@ namespace JAG.Dreambroker.Tests
         private readonly Uri _jsonUrlForInstructionVideosOnDreambrokerPublicWebsite = new Uri("https://dreambroker.com/channel/ij7bmvur.json");
 
         [Fact]
-        public async void NumberOfVideosInFeedMatchNumberOfVideosAsOf10thJune2020()
+        public async Task NumberOfVideosInFeedMatchNumberOfVideosAsOf30thOct2024()
         {
-            int numberOfVideosInFeedOn_10th_June_2020 = 120;
-            var response = await DreambrokerClient.GetFeedDataAsync(_jsonUrlForInstructionVideosOnDreambrokerPublicWebsite)
-                .ConfigureAwait(false);
+            int numberOfVideosInFeedOn_30th_October_2024 = 121;
+            var response = await DreambrokerClient
+                .GetFeedDataAsync(_jsonUrlForInstructionVideosOnDreambrokerPublicWebsite);
 
-            Assert.Equal(numberOfVideosInFeedOn_10th_June_2020, response.Items.Count());
+            Assert.Equal(numberOfVideosInFeedOn_30th_October_2024, response.Items.Count());
         }
 
         [Fact]
-        public async void EmptyUriThrowsArgumentNullException()
+        public async Task EmptyUriThrowsArgumentNullException()
         {
             Uri emptyUri = null;
 
             await Assert.ThrowsAsync<ArgumentNullException>(() =>
-                DreambrokerClient.GetFeedDataAsync(emptyUri)).ConfigureAwait(false);
+                DreambrokerClient.GetFeedDataAsync(emptyUri));
         }
     }
 }
