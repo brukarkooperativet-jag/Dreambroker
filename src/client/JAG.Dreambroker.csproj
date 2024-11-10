@@ -10,6 +10,7 @@
     <Company>Brukarkooperativet JAG</Company>
     <Product>Dreambroker Client</Product>
     <Authors>Tim Nilimaa-Svärd, Gonzalo Maldonado</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/brukarkooperativet-jag/Dreambroker</PackageProjectUrl>
@@ -23,6 +24,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\models\JAG.Dreambroker.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <ItemGroup>
