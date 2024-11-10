@@ -51,6 +51,7 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)/'
     flattenFolders: true
 - task: NuGetCommand@2
+  displayName: 'Publish to Nuget'
   condition: eq(variables.isMain, 'true')
   inputs:
     command: 'push'
