@@ -4,7 +4,10 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- main
+
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -39,10 +42,18 @@ steps:
     majorVersion: '1'
     minorVersion: '1'
     patchVersion: '0'
-- task: ArchiveFiles@2
+- task: CopyFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
+    SourceFolder: '$(Build.BinariesDirectory)'
+    Contents: |
+      **/*.nupkg
+      **/*.symbols.nupkg
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/'
+    flattenFolders: true
+- task: NuGetCommand@2
+  condition: eq(variables.isMain, 'true')
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg;!$(Build.ArtifactStagingDirectory)/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'nuget'
