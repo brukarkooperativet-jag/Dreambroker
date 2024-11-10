@@ -11,25 +11,32 @@ pool:
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: '.NET Restore'
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
     feedsToUse: 'select'
 - task: DotNetCoreCLI@2
+  displayName: '.NET Build'
   inputs:
     command: 'build'
     projects: '**/*.csproj'
+    arguments: '-c Release --no-restore'
 - task: DotNetCoreCLI@2
+  displayName: '.NET Tests'
   inputs:
     command: 'test'
     projects: '**/*ests.csproj'
+    arguments: '-c Release --no-build'
 - task: DotNetCoreCLI@2
+  displayName: '.NET Pack'
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
+    configuration: 'Release'
     nobuild: true
     versioningScheme: 'byPrereleaseNumber'
-    majorVersion: '0'
+    majorVersion: '1'
     minorVersion: '1'
     patchVersion: '0'
 - task: ArchiveFiles@2
